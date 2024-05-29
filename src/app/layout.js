@@ -1,7 +1,8 @@
-import { Inter } from "next/font/google";
+import { Inter, Literata } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+const literata = Literata({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create Next App",
