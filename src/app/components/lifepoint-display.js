@@ -76,7 +76,9 @@ export default function LifepointDisplay() {
       )}
       <div className="flex flex-col items-center">
         {/* Player1Name */}
-        <div className="flex space-x-2 text-white text-2xl mb-2">
+        <div
+          className={`flex space-x-2 text-white text-2xl mb-2 ${literata.className}`}
+        >
           {isEditingPlayer1 ? (
             <>
               <input
@@ -191,7 +193,9 @@ export default function LifepointDisplay() {
       </div>
 
       <div className="flex flex-col items-center sm:mt-2 mt-0">
-        <div className="flex space-x-2 text-white text-2xl mb-2">
+        <div
+          className={`flex space-x-2 text-white text-2xl mb-2 ${literata.className}`}
+        >
           {/* Player2Name */}
           {isEditingPlayer2 ? (
             <>
