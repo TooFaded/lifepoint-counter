@@ -6,8 +6,10 @@ export default function Home() {
   return (
     <main className="flex flex-col  min-h-screen p-24 bg-custom-gradient">
       <LifepointDisplay />
-      <Dice />
-      <Coin />
+      <div className="flex justify-center space-x-16 mt-16 mx-auto p-16 bg-yellow-300 rounded-lg shadow-lg border-2 border-black">
+        <Dice />
+        <Coin />
+      </div>
     </main>
   );
 }

@@ -21,7 +21,8 @@ export default function LifepointDisplay() {
   const lifePointSound = new Audio("/points-drop.mp3");
 
   const animateLifePointsChange = (setLifePoints, targetValue, player) => {
-    const startValue = player === "Player 1" ? lifePoints1 : lifePoints2;
+    const startValue =
+      setLifePoints === setLifePoints1 ? lifePoints1 : lifePoints2;
     const steps = 50;
     const stepValue = (targetValue - startValue) / steps;
     let currentStep = 0;
@@ -52,24 +53,25 @@ export default function LifepointDisplay() {
   const handleApplyChanges = (
     setLifePoints,
     tempLifePoints,
-    setTempLifePoints
+    setTempLifePoints,
+    player
   ) => {
     const currentLifePoints =
       setLifePoints === setLifePoints1 ? lifePoints1 : lifePoints2;
     const newLifePoints = Math.max(
       Math.round(currentLifePoints + tempLifePoints),
       0
-    ); // Ensure new life points are at least 0
-    animateLifePointsChange(setLifePoints, newLifePoints);
+    );
+    animateLifePointsChange(setLifePoints, newLifePoints, player);
     lifePointSound.play();
     setTempLifePoints(0);
   };
 
   return (
-    <div className=" relative flex justify-between w-full max-w-6xl mx-auto flex-wrap">
+    <div className="relative flex justify-between w-full max-w-6xl mx-auto flex-wrap">
       {winner && (
         <div
-          className={`absolute top-0 left-0 right-0 bg-red-600 text-white text-center py-4 text-3xl rounded-lg ${literata.className} `}
+          className={`absolute top-0 left-0 right-0 bg-red-600 text-white text-center py-4 text-3xl rounded-lg ${literata.className}`}
         >
           {winner} is the winner!
         </div>
@@ -126,7 +128,8 @@ export default function LifepointDisplay() {
                   handleApplyChanges(
                     setLifePoints1,
                     tempLifePoints1,
-                    setTempLifePoints1
+                    setTempLifePoints1,
+                    "Player 1"
                   )
                 }
                 className="p-2 bg-green-500 text-white rounded"
@@ -244,7 +247,8 @@ export default function LifepointDisplay() {
                   handleApplyChanges(
                     setLifePoints2,
                     tempLifePoints2,
-                    setTempLifePoints2
+                    setTempLifePoints2,
+                    "Player 2"
                   )
                 }
                 className="p-2 bg-green-500 text-white rounded"
