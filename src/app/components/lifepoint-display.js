@@ -1,10 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Literata } from "next/font/google";
 import { FaCheck } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import WinnerModal from "./winnerModal";
-import { useEffect } from "react";
 
 const literata = Literata({ subsets: ["latin"], style: ["normal", "italic"] });
 
@@ -23,10 +22,11 @@ export default function LifepointDisplay() {
   const [winner, setWinner] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   //Lifepoint sounds
-  let lifePointSound;
+  const lifePointSound = useRef(null);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
-      lifePointSound = new Audio("/points-drop.mp3");
+      lifePointSound.current = new Audio("/points-drop.mp3");
     }
   }, []);
 
@@ -74,7 +74,9 @@ export default function LifepointDisplay() {
       0
     );
     animateLifePointsChange(setLifePoints, newLifePoints, player);
-    lifePointSound.play();
+    if (lifePointSound.current) {
+      lifePointSound.current.play();
+    }
     setTempLifePoints(0);
   };
 
