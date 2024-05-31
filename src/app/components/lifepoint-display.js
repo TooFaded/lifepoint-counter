@@ -4,6 +4,7 @@ import { Literata } from "next/font/google";
 import { FaCheck } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import WinnerModal from "./winnerModal";
+import { useEffect } from "react";
 
 const literata = Literata({ subsets: ["latin"], style: ["normal", "italic"] });
 
