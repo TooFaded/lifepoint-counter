@@ -13,7 +13,7 @@ export default function Dice() {
       const result = Math.floor(Math.random() * 6) + 1;
       setDiceResult(result);
       setRolling(false);
-    }, 1000); // Duration of the roll animation
+    }, 1000); // Duration of the flip animation
   };
 
   return (
@@ -25,8 +25,12 @@ export default function Dice() {
       >
         {rolling ? "Rolling..." : "Roll"}
       </button>
-      <div className={`dice ${rolling ? "rolling" : ""}`}>
-        {!rolling && diceResult}
+      <div className={`dice ${rolling ? "flipping" : ""} face-${diceResult}`}>
+        {!rolling &&
+          diceResult &&
+          Array.from({ length: diceResult }, (_, i) => (
+            <div key={i} className="dot"></div>
+          ))}
       </div>
     </div>
   );

@@ -1,11 +1,16 @@
 import LifepointDisplay from "./components/lifepoint-display";
+
+import Image from "next/image";
 import Dice from "./components/dice";
 import Coin from "./components/coin";
 
 export default function Home() {
   return (
-    <main className="flex flex-col  min-h-screen p-24 bg-custom-gradient">
+    <main className="flex flex-col  min-h-screen p-24">
       <LifepointDisplay />
+      <div className="flex justify-center items-center mt-10">
+        <Image src="/Milli_puzzle.png" width={300} height={300} />
+      </div>
       <div className="flex justify-center space-x-16 mt-16 mx-auto p-16 bg-yellow-300 rounded-lg shadow-lg border-2 border-black">
         <Dice />
         <Coin />

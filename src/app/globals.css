@@ -2,40 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
-@keyframes roll-dice {
-  0% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(90deg);
-  }
-  50% {
-    transform: rotate(180deg);
-  }
-  75% {
-    transform: rotate(270deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 .dice {
   width: 120px;
   height: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
   border: 2px solid #000;
   border-radius: 10px;
-  background-color:#265A96;
-  color:white;
+  background: radial-gradient(50% 50% at 50% 50%, #FFE603 0%, #998A02 100%);
+  position: relative;
+  perspective: 1000px;
 }
 
-.rolling {
+.dot {
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.face-1 .dot:nth-child(1) { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+.face-2 .dot:nth-child(1) { top: 25%; left: 25%; transform: translate(-50%, -50%); }
+.face-2 .dot:nth-child(2) { top: 75%; left: 75%; transform: translate(-50%, -50%); }
+
+.face-3 .dot:nth-child(1) { top: 25%; left: 25%; transform: translate(-50%, -50%); }
+.face-3 .dot:nth-child(2) { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.face-3 .dot:nth-child(3) { top: 75%; left: 75%; transform: translate(-50%, -50%); }
+
+.face-4 .dot:nth-child(1) { top: 25%; left: 25%; transform: translate(-50%, -50%); }
+.face-4 .dot:nth-child(2) { top: 25%; left: 75%; transform: translate(-50%, -50%); }
+.face-4 .dot:nth-child(3) { top: 75%; left: 25%; transform: translate(-50%, -50%); }
+.face-4 .dot:nth-child(4) { top: 75%; left: 75%; transform: translate(-50%, -50%); }
+
+.face-5 .dot:nth-child(1) { top: 25%; left: 25%; transform: translate(-50%, -50%); }
+.face-5 .dot:nth-child(2) { top: 25%; left: 75%; transform: translate(-50%, -50%); }
+.face-5 .dot:nth-child(3) { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.face-5 .dot:nth-child(4) { top: 75%; left: 25%; transform: translate(-50%, -50%); }
+.face-5 .dot:nth-child(5) { top: 75%; left: 75%; transform: translate(-50%, -50%); }
+
+.face-6 .dot:nth-child(1) { top: 25%; left: 25%; transform: translate(-50%, -50%); }
+.face-6 .dot:nth-child(2) { top: 25%; left: 75%; transform: translate(-50%, -50%); }
+.face-6 .dot:nth-child(3) { top: 50%; left: 25%; transform: translate(-50%, -50%); }
+.face-6 .dot:nth-child(4) { top: 50%; left: 75%; transform: translate(-50%, -50%); }
+.face-6 .dot:nth-child(5) { top: 75%; left: 25%; transform: translate(-50%, -50%); }
+.face-6 .dot:nth-child(6) { top: 75%; left: 75%; transform: translate(-50%, -50%); }
+
+@keyframes roll-dice {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    transform: rotateX(1800deg) rotateY(1800deg);
+  }
+  100% {
+    transform: rotateX(3600deg) rotateY(3600deg);
+  }
+}
+
+.flipping {
   animation: roll-dice 1s infinite;
 }
+
 
 @keyframes flip-coin {
   0% {
@@ -58,8 +88,8 @@
   font-size: 1.5rem;
   border: 2px solid #000;
   border-radius: 50%;
-  background-color:#265A96;
-  color: white;
+  background: radial-gradient(50% 50% at 50% 50%, #FFE603 0%, #998A02 100%);
+  color: black;
 }
 
 .flipping {

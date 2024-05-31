@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Literata } from "next/font/google";
 import { FaCheck } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
 
 const literata = Literata({ subsets: ["latin"], style: ["normal", "italic"] });
 
@@ -97,12 +98,12 @@ export default function LifepointDisplay() {
             </>
           ) : (
             <>
-              <h1>{player1Name}</h1>
+              <h1 className="text-4xl">{player1Name}</h1>
               <button
                 onClick={() => setIsEditingPlayer1(true)}
                 className="px-2 text-black bg-blue-200 rounded"
               >
-                Edit
+                <FaEdit />
               </button>
             </>
           )}
@@ -216,12 +217,12 @@ export default function LifepointDisplay() {
             </>
           ) : (
             <>
-              <h1>{player2Name}</h1>
+              <h1 className="text-4xl">{player2Name}</h1>
               <button
                 onClick={() => setIsEditingPlayer2(true)}
                 className="px-2 text-black bg-blue-200 rounded"
               >
-                Edit
+                <FaEdit />
               </button>
             </>
           )}
