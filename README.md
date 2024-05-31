@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Yu-Gi-Oh! Life Point Counter
 
-## Getting Started
+A fan-made Yu-Gi-Oh! life point counter with sound effects, dice, and coin flip capabilities. This project is built using Next.js and Tailwind CSS to help practice front-end development skills.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Life Point Counter**: Track life points for two players.
+- **Sound Effects**: Play sound effects when life points change.
+- **Dice Roll**: Roll a die with realistic die faces.
+- **Coin Flip**: Flip a coin with Yu-Gi-Oh! themed heads and tails.
+- **Responsive Design**: Optimized for both desktop and mobile devices.
+- **Editable Player Names**: Players can edit their names directly in the UI.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technologies Used
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Next.js**: A powerful React framework for server-side rendering and static site generation.
+- **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
+- **JavaScript**: For handling game logic and interactivity.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Demo
 
-## Learn More
+Check out the live demo [here](yugioh-lifepoint-counter.vercel.app).
 
-To learn more about Next.js, take a look at the following resources:
+## Installation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To run this project locally, follow these steps:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. **Clone the repository:**
 
-## Deploy on Vercel
+   git clone https://github.com/TooFaded/lifepoint-counter.git
+   cd lifepoint-counter
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. **Install dependencies:**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   npm install
+
+3. **Run the development server:**
+
+   npm run dev
+   Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Usage
+
+- **Life Point Counter**: Use the buttons to increase or decrease life points.
+- **Dice Roll**: Click the "Roll" button to roll a die.
+- **Coin Flip**: Click the "Flip" button to flip a coin.
+- **Edit Player Names**: Click the "Edit" button next to each player's name to change it.
+
+## Contributing
+
+Contributions are welcome! If you have suggestions for improvements, feel free to open an issue or create a pull request.
+
+## License
+
+This project is fan-made and not affiliated with or endorsed by Konami or the Yu-Gi-Oh! franchise. All trademarks are property of their respective owners.
+
+## Acknowledgements
+
+- Thanks to the Yu-Gi-Oh! community for inspiring this project.
+- Special thanks to the creators of Next.js and Tailwind CSS for their amazing tools.
+
+## Contact
+
+Feel free to reach out to me on LinkedIn (https://www.linkedin.com/in/-melvin-torres/) if you have any questions or just want to connect!
