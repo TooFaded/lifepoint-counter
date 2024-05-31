@@ -18,11 +18,16 @@ export default function LifepointDisplay() {
   const [player2Name, setPlayer2Name] = useState("Player 2");
   const [isEditingPlayer1, setIsEditingPlayer1] = useState(false);
   const [isEditingPlayer2, setIsEditingPlayer2] = useState(false);
-
+  // Announce Winner State
   const [winner, setWinner] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const lifePointSound = new Audio("/points-drop.mp3");
+  //Lifepoint sounds
+  let lifePointSound;
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      lifePointSound = new Audio("/points-drop.mp3");
+    }
+  }, []);
 
   const animateLifePointsChange = (setLifePoints, targetValue, player) => {
     const startValue =

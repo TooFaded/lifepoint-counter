@@ -9,7 +9,12 @@ export default function Home() {
     <main className="flex flex-col min-h-screen pt-20">
       <LifepointDisplay />
       <div className="flex justify-center items-center mx-auto mt-10">
-        <Image src="/Milli_puzzle.png" width={300} height={300} />
+        <Image
+          src="/Milli_puzzle.png"
+          width={300}
+          height={300}
+          alt="Millennium Puzzle"
+        />
       </div>
       <div className="flex justify-center space-x-16 my-16 mx-auto p-16 bg-yellow-300 rounded-lg shadow-lg border-2 border-black">
         <Dice />
