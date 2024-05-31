@@ -3,21 +3,24 @@ import { useState } from "react";
 import { Literata } from "next/font/google";
 import { FaCheck } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
+import WinnerModal from "./winnerModal";
 
 const literata = Literata({ subsets: ["latin"], style: ["normal", "italic"] });
 
 export default function LifepointDisplay() {
+  // Lifepoint State
   const [lifePoints1, setLifePoints1] = useState(8000);
   const [lifePoints2, setLifePoints2] = useState(8000);
   const [tempLifePoints1, setTempLifePoints1] = useState(0);
   const [tempLifePoints2, setTempLifePoints2] = useState(0);
-
+  // Player State
   const [player1Name, setPlayer1Name] = useState("Player 1");
   const [player2Name, setPlayer2Name] = useState("Player 2");
   const [isEditingPlayer1, setIsEditingPlayer1] = useState(false);
   const [isEditingPlayer2, setIsEditingPlayer2] = useState(false);
 
   const [winner, setWinner] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const lifePointSound = new Audio("/points-drop.mp3");
 
@@ -37,6 +40,7 @@ export default function LifepointDisplay() {
           const finalValue = Math.max(targetValue, 0);
           if (finalValue === 0) {
             setWinner(player === "Player 1" ? player2Name : player1Name);
+            setIsModalOpen(true);
           }
           return finalValue;
         }
@@ -68,19 +72,20 @@ export default function LifepointDisplay() {
     setTempLifePoints(0);
   };
 
+  const resetGame = () => {
+    setLifePoints1(8000);
+    setLifePoints2(8000);
+    setWinner(null);
+    setIsModalOpen(false);
+  };
+
   return (
-    <div className="relative flex justify-between w-full max-w-6xl mx-auto flex-wrap">
-      {winner && (
-        <div
-          className={`absolute top-0 left-0 right-0 bg-red-600 text-white text-center py-4 text-3xl rounded-lg ${literata.className}`}
-        >
-          {winner} is the winner!
-        </div>
-      )}
-      <div className="flex flex-col items-center">
+    <div className="relative flex flex-col md:flex-row justify-between w-full max-w-6xl mx-auto p-4">
+      <WinnerModal isOpen={isModalOpen} winner={winner} onClose={resetGame} />
+      <div className="flex flex-col items-center mb-8 md:mb-0">
         {/* Player1Name */}
         <div
-          className={`flex space-x-2 text-white text-2xl mb-2 ${literata.className}`}
+          className={`flex items-center space-x-2 text-white text-2xl mb-2 ${literata.className}`}
         >
           {isEditingPlayer1 ? (
             <>
@@ -101,7 +106,7 @@ export default function LifepointDisplay() {
               <h1 className="text-4xl">{player1Name}</h1>
               <button
                 onClick={() => setIsEditingPlayer1(true)}
-                className="px-2 text-black bg-blue-200 rounded"
+                className="px-2 text-white rounded"
               >
                 <FaEdit />
               </button>
@@ -109,12 +114,12 @@ export default function LifepointDisplay() {
           )}
         </div>
         <div
-          className={`h-[370px] w-[514px] md:w-[450px] lg:w-[514px] bg-custom-image bg-cover bg-center bg-no-repeat flex justify-center items-center text-9xl text-yellow-300 rounded-[32px] ${literata.className} text-stroke-black italic font-medium shadow-lg`}
+          className={`h-[250px] w-[350px] sm:h-[370px] sm:w-[514px] md:w-[450px] lg:w-[514px] bg-custom-image bg-cover bg-center bg-no-repeat flex justify-center items-center text-7xl sm:text-9xl text-yellow-300 rounded-[32px] ${literata.className} text-stroke-black italic font-medium shadow-lg`}
         >
           {Math.round(lifePoints1)}
         </div>
         <div
-          className={`flex items-center text-3xl ${literata.className} text-yellow-300 mt-2`}
+          className={`flex items-center text-2xl sm:text-3xl ${literata.className} text-yellow-300 mt-2`}
         >
           {/* Lifepoints to be applied to player 1 */}
           {tempLifePoints1 !== 0
@@ -141,54 +146,54 @@ export default function LifepointDisplay() {
           )}
         </div>
         <div className="flex flex-col justify-center space-y-2 mt-4">
-          <div className="flex space-x-6 mb-2">
+          <div className="flex flex-wrap justify-center space-x-4 mb-2">
             <button
               onClick={() => handleAccumulateChange(setTempLifePoints1, 50)}
-              className={`w-20 h-12 text-lg bg-green-500 border-2 border-green-400 text-white ${literata.className} rounded`}
+              className={`w-16 h-10 text-lg bg-green-500 border-2 border-green-400 text-white ${literata.className} rounded`}
             >
               +50
             </button>
             <button
               onClick={() => handleAccumulateChange(setTempLifePoints1, 100)}
-              className={`w-20 h-12 text-lg bg-green-500 border-2 border-green-400 text-white ${literata.className} rounded`}
+              className={`w-16 h-10 text-lg bg-green-500 border-2 border-green-400 text-white ${literata.className} rounded`}
             >
               +100
             </button>
             <button
               onClick={() => handleAccumulateChange(setTempLifePoints1, 500)}
-              className={`w-20 h-12 text-lg bg-green-500 border-2 border-green-400 text-white ${literata.className} rounded`}
+              className={`w-16 h-10 text-lg bg-green-500 border-2 border-green-400 text-white ${literata.className} rounded`}
             >
               +500
             </button>
             <button
               onClick={() => handleAccumulateChange(setTempLifePoints1, 1000)}
-              className={`w-20 h-12 text-lg bg-green-500 border-2 border-green-400 text-white ${literata.className} rounded`}
+              className={`w-16 h-10 text-lg bg-green-500 border-2 border-green-400 text-white ${literata.className} rounded`}
             >
               +1000
             </button>
           </div>
-          <div className="flex space-x-6">
+          <div className="flex flex-wrap justify-center space-x-4">
             <button
               onClick={() => handleAccumulateChange(setTempLifePoints1, -50)}
-              className={`w-20 h-12 text-lg bg-red-500 border-2 border-red-400 text-white ${literata.className} rounded`}
+              className={`w-16 h-10 text-lg bg-red-500 border-2 border-red-400 text-white ${literata.className} rounded`}
             >
               -50
             </button>
             <button
               onClick={() => handleAccumulateChange(setTempLifePoints1, -100)}
-              className={`w-20 h-12 text-lg bg-red-500 border-2 border-red-400 text-white ${literata.className} rounded`}
+              className={`w-16 h-10 text-lg bg-red-500 border-2 border-red-400 text-white ${literata.className} rounded`}
             >
               -100
             </button>
             <button
               onClick={() => handleAccumulateChange(setTempLifePoints1, -500)}
-              className={`w-20 h-12 text-lg bg-red-500 border-2 border-red-400 text-white ${literata.className} rounded`}
+              className={`w-16 h-10 text-lg bg-red-500 border-2 border-red-400 text-white ${literata.className} rounded`}
             >
               -500
             </button>
             <button
               onClick={() => handleAccumulateChange(setTempLifePoints1, -1000)}
-              className={`w-20 h-12 text-lg bg-red-500 border-2 border-red-400 text-white ${literata.className} rounded`}
+              className={`w-16 h-10 text-lg bg-red-500 border-2 border-red-400 text-white ${literata.className} rounded`}
             >
               -1000
             </button>
@@ -196,9 +201,9 @@ export default function LifepointDisplay() {
         </div>
       </div>
 
-      <div className="flex flex-col items-center sm:mt-2 mt-0">
+      <div className="flex flex-col items-center">
         <div
-          className={`flex space-x-2 text-white text-2xl mb-2 ${literata.className}`}
+          className={`flex items-center space-x-2 text-white text-2xl mb-2 ${literata.className}`}
         >
           {/* Player2Name */}
           {isEditingPlayer2 ? (
@@ -220,7 +225,7 @@ export default function LifepointDisplay() {
               <h1 className="text-4xl">{player2Name}</h1>
               <button
                 onClick={() => setIsEditingPlayer2(true)}
-                className="px-2 text-black bg-blue-200 rounded"
+                className="px-2 text-white rounded"
               >
                 <FaEdit />
               </button>
@@ -228,14 +233,14 @@ export default function LifepointDisplay() {
           )}
         </div>
         <div
-          className={`h-[370px] w-[514px] md:w-[450px] lg:w-[514px] bg-custom-image bg-cover bg-center bg-no-repeat flex justify-center items-center text-9xl text-yellow-300 rounded-[32px] ${literata.className} text-stroke-black italic font-medium shadow-lg`}
+          className={`h-[250px] w-[350px] sm:h-[370px] sm:w-[514px] md:w-[450px] lg:w-[514px] bg-custom-image bg-cover bg-center bg-no-repeat flex justify-center items-center text-7xl sm:text-9xl text-yellow-300 rounded-[32px] ${literata.className} text-stroke-black italic font-medium shadow-lg`}
         >
           {Math.round(lifePoints2)}
         </div>
-        {/* Lifepoints to be applied to player 2 */}
         <div
-          className={`flex items-center text-3xl ${literata.className} text-yellow-300 mt-2`}
+          className={`flex items-center text-2xl sm:text-3xl ${literata.className} text-yellow-300 mt-2`}
         >
+          {/* Lifepoints to be applied to player 2 */}
           {tempLifePoints2 !== 0
             ? tempLifePoints2 > 0
               ? `+${tempLifePoints2}`
@@ -259,55 +264,56 @@ export default function LifepointDisplay() {
             </div>
           )}
         </div>
+        {/* Lifepoint Buttons */}
         <div className="flex flex-col justify-center space-y-2 mt-4">
-          <div className="flex space-x-6 mb-2">
+          <div className="flex flex-wrap justify-center space-x-4 mb-2">
             <button
               onClick={() => handleAccumulateChange(setTempLifePoints2, 50)}
-              className={`w-20 h-12 text-lg bg-green-500 border-2 border-green-400 text-white ${literata.className} rounded`}
+              className={`w-16 h-10 text-lg bg-green-500 border-2 border-green-400 text-white ${literata.className} rounded`}
             >
               +50
             </button>
             <button
               onClick={() => handleAccumulateChange(setTempLifePoints2, 100)}
-              className={`w-20 h-12 text-lg bg-green-500 border-2 border-green-400 text-white ${literata.className} rounded`}
+              className={`w-16 h-10 text-lg bg-green-500 border-2 border-green-400 text-white ${literata.className} rounded`}
             >
               +100
             </button>
             <button
               onClick={() => handleAccumulateChange(setTempLifePoints2, 500)}
-              className={`w-20 h-12 text-lg bg-green-500 border-2 border-green-400 text-white ${literata.className} rounded`}
+              className={`w-16 h-10 text-lg bg-green-500 border-2 border-green-400 text-white ${literata.className} rounded`}
             >
               +500
             </button>
             <button
               onClick={() => handleAccumulateChange(setTempLifePoints2, 1000)}
-              className={`w-20 h-12 text-lg bg-green-500 border-2 border-green-400 text-white ${literata.className} rounded`}
+              className={`w-16 h-10 text-lg bg-green-500 border-2 border-green-400 text-white ${literata.className} rounded`}
             >
               +1000
             </button>
           </div>
-          <div className="flex space-x-6">
+          <div className="flex flex-wrap justify-center space-x-4">
             <button
               onClick={() => handleAccumulateChange(setTempLifePoints2, -50)}
-              className={`w-20 h-12 text-lg bg-red-500 border-2 border-red-400 text-white ${literata.className} rounded`}
+              className={`w-16 h-10 text-lg bg-red-500 border-2 border-red-400 text-white ${literata.className} rounded`}
             >
               -50
             </button>
             <button
               onClick={() => handleAccumulateChange(setTempLifePoints2, -100)}
-              className={`w-20 h-12 text-lg bg-red-500 border-2 border-red-400 text-white ${literata.className} rounded`}
+              className={`w-16 h-10 text-lg bg-red-500 border-2 border-red-400 text-white ${literata.className} rounded`}
             >
               -100
             </button>
             <button
               onClick={() => handleAccumulateChange(setTempLifePoints2, -500)}
-              className={`w-20 h-12 text-lg bg-red-500 border-2 border-red-400 text-white ${literata.className} rounded`}
+              className={`w-16 h-10 text-lg bg-red-500 border-2 border-red-400 text-white ${literata.className} rounded`}
             >
               -500
             </button>
             <button
               onClick={() => handleAccumulateChange(setTempLifePoints2, -1000)}
-              className={`w-20 h-12 text-lg bg-red-500 border-2 border-red-400 text-white ${literata.className} rounded`}
+              className={`w-16 h-10 text-lg bg-red-500 border-2 border-red-400 text-white ${literata.className} rounded`}
             >
               -1000
             </button>

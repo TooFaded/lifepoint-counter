@@ -20,7 +20,7 @@ export default function Coin() {
     <div className="flex flex-col items-center">
       <button
         onClick={flipCoin}
-        className="w-20 h-20 bg-gray-800 text-white rounded-full flex items-center justify-center text-2xl mb-4"
+        className="w-20 h-20 bg-gray-800 text-white rounded-full flex items-center justify-center text-lg mb-4"
         disabled={flipping}
       >
         {flipping ? "Flipping..." : "Flip"}
