@@ -99,6 +99,7 @@ export default function LifepointDisplay() {
             <>
               <input
                 value={player1Name}
+                size="10"
                 onChange={(e) => setPlayer1Name(e.target.value)}
                 className="px-2 text-black rounded"
               />
@@ -218,6 +219,7 @@ export default function LifepointDisplay() {
             <>
               <input
                 value={player2Name}
+                size="10"
                 onChange={(e) => setPlayer2Name(e.target.value)}
                 className="px-2 text-black rounded"
               />
